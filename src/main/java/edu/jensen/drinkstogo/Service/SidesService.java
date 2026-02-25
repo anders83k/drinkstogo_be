@@ -29,7 +29,7 @@ public class SidesService {
         Sides dishi = new Sides();
         dishi.setDish(dto.getDish());
         dishi.setComponents(dto.getComponents());
-        sidesRepository.save(dishi);  //Sides saveDishi= ; radbyte..  return dto; behövdes ej,
+       sidesRepository.save(dishi);  //  Sides saveDishi = sidesRepository.save(dishi); radbyte..
 
         return dto;
     }

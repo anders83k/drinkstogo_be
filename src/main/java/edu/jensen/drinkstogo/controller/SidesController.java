@@ -23,4 +23,3 @@ public class SidesController {
         return sidesService.saveDishi(dto);
     }
 }
-//behöver getmapping och postmapping i denna filen.

@@ -26,14 +26,40 @@ public class DrinkstogoService {
         }
         return drinkDTOs;
     }
+    public DrinkstogoDTO getDrinkById(Integer id) {
+        Drinkstogo drink = drinkstogoRepository.findById(id).orElse(null);
+        if (drink == null) {
+            return null;
+        }
+        DrinkstogoDTO dto = new DrinkstogoDTO();
+        dto.setName(drink.getName());
+        dto.setRecipe(drink.getRecipe());
+        return dto;
+    }
     public DrinkstogoDTO saveDrink(DrinkstogoDTO dto) {
         Drinkstogo drink = new Drinkstogo();
         drink.setName(dto.getName());
         drink.setRecipe(dto.getRecipe());
 
-        Drinkstogo saveDrink = drinkstogoRepository.save(drink);
+        drinkstogoRepository.save(drink);
         return dto;
     }
+    public DrinkstogoDTO updateDrink(Integer id, DrinkstogoDTO dto){
+        Drinkstogo existingDrink = drinkstogoRepository.findById(id).orElse(null);
+        if (existingDrink == null) {
+            return null;
+        }
+        existingDrink.setName(dto.getName());
+        existingDrink.setRecipe(dto.getRecipe());
+        Drinkstogo updatedDrink = drinkstogoRepository.save(existingDrink);
 
+        DrinkstogoDTO responseDto = new DrinkstogoDTO();
+        responseDto.setName(updatedDrink.getName());
+        responseDto.setRecipe(updatedDrink.getRecipe());
+        return responseDto;
+    }
+    public void deleteDrinkById(Integer id) {
+        drinkstogoRepository.deleteById(id);
+    }
 
 }
