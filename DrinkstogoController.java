@@ -21,9 +21,23 @@ public class DrinkstogoController {
                                                      //fetchalldrinks(); rad 24 & 25 alt: drinkstogoService.getDrinkById(2); plockas bort om man kör list
         return drinkstogoService.getAllDrinks();        //getDrinkById() ex: getDrinkById(2) ;
     }
+    @GetMapping ("/{id}")
+    public DrinkstogoDTO getDrinkById(@PathVariable Integer id){
+        return drinkstogoService.getDrinkById(id);
+    }
     @PostMapping
     public DrinkstogoDTO createDrink(@RequestBody DrinkstogoDTO dto){
         return drinkstogoService.saveDrink(dto);
     }
+    @DeleteMapping ("/{id}")
+    public void deleteDrink(@PathVariable Integer id) {
+        drinkstogoService.deleteDrinkById(id);
+    }
+    @PutMapping ("/{id}")
+    public DrinkstogoDTO updateDrink(@PathVariable Integer id, @RequestBody DrinkstogoDTO dto){
+        return drinkstogoService.updateDrink(id, dto);
+    }
+
 
 }
+
