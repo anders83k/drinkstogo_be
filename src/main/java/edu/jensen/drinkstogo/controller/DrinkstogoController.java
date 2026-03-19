@@ -16,33 +16,28 @@ public class DrinkstogoController {
     }
 
     @GetMapping
-    public List<DrinkstogoDTO> getAllDrinks(){      //eller List<DrinkstogoDTO> alt: getDrinkByID(){
+    public List<DrinkstogoDTO> getAllDrinks() {      //eller List<DrinkstogoDTO> alt: getDrinkByID(){
         //fetchalldrinks(); rad 24 & 25 alt: drinkstogoService.getDrinkById(2); plockas bort om man kör list
         return drinkstogoService.getAllDrinks();        //getDrinkById() ex: getDrinkById(2) ;
     }
-    @GetMapping ("/{id}")
-    public DrinkstogoDTO getDrinkById(@PathVariable Integer id){
+
+    @GetMapping("/{id}")
+    public DrinkstogoDTO getDrinkById(@PathVariable Integer id) {
         return drinkstogoService.getDrinkById(id);
     }
+
     @PostMapping
-    public DrinkstogoDTO createDrink(@RequestBody DrinkstogoDTO dto){
+    public DrinkstogoDTO createDrink(@RequestBody DrinkstogoDTO dto) {
         return drinkstogoService.saveDrink(dto);
     }
-    @DeleteMapping ("/{id}")
+
+    @DeleteMapping("/{id}")
     public void deleteDrink(@PathVariable Integer id) {
         drinkstogoService.deleteDrinkById(id);
     }
-    @PutMapping ("/{id}")
-    public DrinkstogoDTO updateDrink(@PathVariable Integer id, @RequestBody DrinkstogoDTO dto){
+
+    @PutMapping("/{id}")
+    public DrinkstogoDTO updateDrink(@PathVariable Integer id, @RequestBody DrinkstogoDTO dto) {
         return drinkstogoService.updateDrink(id, dto);
     }
-<<<<<<< HEAD:src/main/java/edu/jensen/drinkstogo/controller/DrinkstogoController.java
-
-
 }
-=======
-
-
-}
-
->>>>>>> ccf6bb030b85c291c55e7f6ad5aee32b232a107a:DrinkstogoController.java
