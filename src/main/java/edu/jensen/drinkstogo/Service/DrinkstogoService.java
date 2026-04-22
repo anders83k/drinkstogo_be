@@ -3,6 +3,7 @@ package edu.jensen.drinkstogo.Service;
 import edu.jensen.drinkstogo.DTO.DrinkstogoDTO;
 import edu.jensen.drinkstogo.Repository.DrinkstogoRepository;
 import edu.jensen.drinkstogo.entity.Drinkstogo;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,10 +28,9 @@ public class DrinkstogoService {
         return drinkDTOs;
     }
     public DrinkstogoDTO getDrinkById(Integer id) {
-        Drinkstogo drink = drinkstogoRepository.findById(id).orElse(null);
-        if (drink == null) {
-            return null;
-        }
+        Drinkstogo drink = drinkstogoRepository.findById(id)
+                .orElseThrow(()->new EntityNotFoundException("No such drink found"));
+
         DrinkstogoDTO dto = new DrinkstogoDTO();
         dto.setName(drink.getName());
         dto.setRecipe(drink.getRecipe());

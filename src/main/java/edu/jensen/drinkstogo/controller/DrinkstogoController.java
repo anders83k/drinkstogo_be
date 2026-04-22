@@ -17,9 +17,9 @@ public class DrinkstogoController {
     }
 
     @GetMapping
-    public List<DrinkstogoDTO> getAllDrinks(){      //eller List<DrinkstogoDTO> alt: getDrinkByID(){
-                                                     //fetchalldrinks(); rad 24 & 25 alt: drinkstogoService.getDrinkById(2); plockas bort om man kör list
-        return drinkstogoService.getAllDrinks();        //getDrinkById() ex: getDrinkById(2) ;
+    public List<DrinkstogoDTO> getAllDrinks(){
+
+        return drinkstogoService.getAllDrinks();
     }
     @GetMapping ("/{id}")
     public DrinkstogoDTO getDrinkById(@PathVariable Integer id){
