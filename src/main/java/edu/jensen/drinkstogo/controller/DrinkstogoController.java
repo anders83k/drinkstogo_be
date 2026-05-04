@@ -1,7 +1,7 @@
 package edu.jensen.drinkstogo.controller;
 
-import edu.jensen.drinkstogo.dto.DrinkstogoDTO;
-import edu.jensen.drinkstogo.service.DrinkstogoService;
+import edu.jensen.drinkstogo.DTO.DrinkstogoDTO;
+import edu.jensen.drinkstogo.Service.DrinkstogoService;
 import edu.jensen.drinkstogo.entity.Drinkstogo;
 import org.springframework.web.bind.annotation.*;
 
