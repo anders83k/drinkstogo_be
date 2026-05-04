@@ -28,7 +28,7 @@ public class DrinkstogoService {
     }
     public DrinkstogoDTO saveDrink(DrinkstogoDTO dto) {
         Drinkstogo drink = new Drinkstogo();
-        drink.setName(dto.getName());
+        drink.setName(dto.getName());/home/ayo/Documents/Skolan/Java/Projekt1-fixed/Projekt1BE/drinkstogo_be
         drink.setRecipe(dto.getRecipe());
 
         drinkstogoRepository.save(drink);
