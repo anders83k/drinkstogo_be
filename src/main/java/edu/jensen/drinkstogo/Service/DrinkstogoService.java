@@ -1,0 +1,65 @@
+package edu.jensen.drinkstogo.Service;
+
+import edu.jensen.drinkstogo.DTO.DrinkstogoDTO;
+import edu.jensen.drinkstogo.Repository.DrinkstogoRepository;
+import edu.jensen.drinkstogo.entity.Drinkstogo;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class DrinkstogoService {
+    private final DrinkstogoRepository drinkstogoRepository;
+
+    public DrinkstogoService(DrinkstogoRepository drinkstogoRepository){
+        this.drinkstogoRepository = drinkstogoRepository;
+    }
+    public List<DrinkstogoDTO> getAllDrinks(){
+        List<Drinkstogo> drinks =drinkstogoRepository.findAll();
+        List<DrinkstogoDTO> drinkDTOs = new ArrayList<>();
+        for (Drinkstogo drink : drinks){
+            DrinkstogoDTO dto = new DrinkstogoDTO();
+            dto.setName(drink.getName());
+            dto.setRecipe(drink.getRecipe());
+            drinkDTOs.add(dto);
+        }
+        return drinkDTOs;
+    }
+    public DrinkstogoDTO getDrinkById(Integer id) {
+        Drinkstogo drink = drinkstogoRepository.findById(id)
+                .orElseThrow(()->new EntityNotFoundException("No such drink found"));
+
+        DrinkstogoDTO dto = new DrinkstogoDTO();
+        dto.setName(drink.getName());
+        dto.setRecipe(drink.getRecipe());
+        return dto;
+    }
+    public DrinkstogoDTO saveDrink(DrinkstogoDTO dto) {
+        Drinkstogo drink = new Drinkstogo();
+        drink.setName(dto.getName());
+        drink.setRecipe(dto.getRecipe());
+
+        drinkstogoRepository.save(drink);
+        return dto;
+    }
+    public DrinkstogoDTO updateDrink(Integer id, DrinkstogoDTO dto){
+        Drinkstogo existingDrink = drinkstogoRepository.findById(id).orElse(null);
+        if (existingDrink == null) {
+            return null;
+        }
+        existingDrink.setName(dto.getName());
+        existingDrink.setRecipe(dto.getRecipe());
+        Drinkstogo updatedDrink = drinkstogoRepository.save(existingDrink);
+
+        DrinkstogoDTO responseDto = new DrinkstogoDTO();
+        responseDto.setName(updatedDrink.getName());
+        responseDto.setRecipe(updatedDrink.getRecipe());
+        return responseDto;
+    }
+    public void deleteDrinkById(Integer id) {
+        drinkstogoRepository.deleteById(id);
+    }
+
+}
