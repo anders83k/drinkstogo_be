@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: edu.jensen.drinkstogo.DrinkstogoApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.235 s -- in edu.jensen.drinkstogo.DrinkstogoApplicationTests
